@@ -15,7 +15,7 @@ max_x = 300
 max_y = 180
 
 
-plume = packets(delta_t = 1/fps)
+plume = packets(delta_t = 1/fps, init_intensity = 10740.4)
 
 x_list = np.linspace(0, max_x, int(px_per_mm*max_x))
 y_list = np.linspace(0, max_y, int(px_per_mm*max_y))
@@ -28,10 +28,10 @@ pos_arr[:,0] = all_x
 pos_arr[:,1] = all_y
 
 num_steps = int(fps*run_time)
-num_steps = 10 #if you want to just run one step to see a frame and make sure things are working
+num_steps = 5 #if you want to just run one step to see a frame and make sure things are working
 
-output_file = 'default_simulated_plume.mp4'
-writer = imageio.get_writer(output_file, fps=30)
+output_file = 'check_default_simulated_plume.mp4'
+writer = imageio.get_writer(output_file, fps=fps)
 
 
 for i in range(0, num_steps):
@@ -39,14 +39,20 @@ for i in range(0, num_steps):
 	plume.evolve_packets()
 	odors = plume.compute_sig(pos_arr)
 	frame = odors.reshape(np.shape(xx))
+	frame[frame>255] = 255
+	
+
+	#The following block exists if you want to visualize a frame
+
 	"""
-	The following block exists if you want to visualize a frame
 
 	fig = plt.figure()
 	ax = fig.add_subplot(111)
 	ax.imshow(frame, extent = [0,max_x,0,max_y])
 	plt.show()
+
 	"""
+	
 	frame = frame.astype(np.uint8)
 	writer.append_data(frame)
 
