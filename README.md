@@ -5,5 +5,5 @@ The scripts are organized as follows: packet_environment.py is a class that allo
 
 ## Dependencies ##
 
-Code uses python3 and numpy only. For plotting and making movies matplotlib and imageio are also used. 
+Code uses python3 and numpy only. For plotting and making movies matplotlib and imageio version 2.28 and imageio-ffmpeg version 0.4.8 are also used. 
 
