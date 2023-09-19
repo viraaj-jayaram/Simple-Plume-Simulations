@@ -28,9 +28,9 @@ pos_arr[:,0] = all_x
 pos_arr[:,1] = all_y
 
 num_steps = int(fps*run_time)
-num_steps = 5 #if you want to just run one step to see a frame and make sure things are working
+#num_steps = 5 #if you want to just run a few steps to see a frame and make sure things are working
 
-output_file = 'check_default_simulated_plume.mp4'
+output_file = 'default_simulated_plume.mp4'
 writer = imageio.get_writer(output_file, fps=fps)
 
 
