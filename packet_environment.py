@@ -74,7 +74,7 @@ class packets:
 			self.packet_ys = np.append(self.packet_ys, self.source_y)
 			self.packet_durations = np.append(self.packet_durations, 0)
 			if self.cw_type == 'telegraph':
-				rand_unif_2 = rand_gen.random_sample(1)
+				rand_unif_2 = self.rand_gen.random_sample(1)
 				sign = 2*(rand_unif_2<0.5)-1
 				self.packet_signs = np.append(self.packet_signs, sign)
 			elif self.cw_type == 'O-U':	
@@ -160,8 +160,8 @@ class packets:
 
 		all_points = np.vstack((left_points, right_points))
 		all_signals = compute_sig(all_points)
-		total_left_sig = all_total_signals[0:len(left_points[:,0])-1]
-		total_right_sig = all_total_signals[len(left_points[:,0]):]
+		total_left_sig = all_signals[0:len(left_points[:,0])]
+		total_right_sig = all_signals[len(left_points[:,0]):]
 
 		left_sig = np.mean(total_left_sig) #averages across left sensors
 		right_sig = np.mean(total_right_sig) #averages across right sensors
